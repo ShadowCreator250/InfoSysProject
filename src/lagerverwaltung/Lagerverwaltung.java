@@ -7,6 +7,7 @@ import java.util.Set;
 public class Lagerverwaltung {
 
 	private Set<String> berechtigteMitarbeiter;
+	private List<Lagerposten> lagerposten;
 	private PrintWriter writer;
 
 	public Lagerverwaltung() {
@@ -46,5 +47,9 @@ public class Lagerverwaltung {
 
 	public Set<String> getBerechtigteMitarbeiter() {
 		return berechtigteMitarbeiter;
+	}
+
+	public List<Lagerposten> getLagerposten() {
+		return lagerposten;
 	}
 }
