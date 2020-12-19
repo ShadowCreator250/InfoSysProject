@@ -19,4 +19,9 @@ public class Artikel {
 	public String getName() {
 		return name;
 	}
+
+	@Override
+	public String toString() {
+		return "Artikel#" + id + "[" + name + " ~ " + beschreibung + "]";
+	}
 }

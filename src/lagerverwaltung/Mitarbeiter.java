@@ -18,4 +18,9 @@ public class Mitarbeiter {
 		return name;
 	}
 
+	@Override
+	public String toString() {
+		return "Mitarbeiter#" + id + "[" + name + "]";
+	}
+
 }

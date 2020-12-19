@@ -32,4 +32,9 @@ public class Lagerposten {
 		return artikel;
 	}
 
+	@Override
+	public String toString() {
+		return "Lagerposten{" + artikel.toString() + " | St&uuml;ck: " + lagerbestand + " | Preis: " + preis + "}";
+	}
+
 }
