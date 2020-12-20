@@ -85,8 +85,13 @@ public class Lagerverwaltung {
 	 * @param preis       - der Preis pro St&uuml;ck
 	 */
 	public void wareneingangBuchen(Mitarbeiter mitarbeiter, Artikel artikel, int anzahl, double preis) {
-		// TODO Auto-generated method stub
-
+		Lagerposten lagerposten = new Lagerposten(artikel, anzahl, preis);
+		if(berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
+			addToLog(mitarbeiter.toString() + " hat einen Lagerposten zum Lager hinzugefügt.");
+			addToLagerposten(lagerposten);
+		} else {
+			addToLog(mitarbeiter.toString() + " hat unberechtigt versucht " + lagerposten.toString() + " zum Lager hinzuzufügen.");
+		}
 	}
 
 	/**
@@ -108,13 +113,19 @@ public class Lagerverwaltung {
 	}
 
 	/**
-	 * F&uuml;gt einen {@link Lagerposten} zum Lagerbestand hinzu.
+	 * F&uuml;gt einen {@link Lagerposten} zum Lagerbestand hinzu. Wird benutzt um das Lager zu
+	 * bef&uuml;llen, ohne das ein {@link Mitarbeiter} ben&ouml;tigt wird.
 	 * 
 	 * @param lagerposten - Der hinzuzuf&uuml;gende {@link Lagerposten}.
 	 */
 	public void addToLagerposten(Lagerposten lagerposten) {
-		// TODO Auto-generated method stub
-
+		for (Lagerposten posten : this.lagerposten) {
+			if(posten.getArtikel().getId().equals(lagerposten.getArtikel().getId())) {
+				posten.setPreis(lagerposten.getPreis());
+			}
+		}
+		this.lagerposten.add(lagerposten);
+		addToLog(lagerposten.toString() + " wurde zum Lager hinzugefügt und alle Preise aktualisiert.");
 	}
 
 	/**
