@@ -108,8 +108,29 @@ public class Lagerverwaltung {
 	 *         Bestellung ausgef&uuml;hrt wurde.
 	 */
 	public Bestellbestaetigung bestellungAusfuehren(Mitarbeiter mitarbeiter, List<Bestellposten> bestellung) {
-		// TODO Auto-generated method stub
-		return null;
+		int gesamtpreis = 0;
+		Bestellbestaetigung bb = null;
+		if(berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
+			for(Bestellposten bp: bestellung) {
+				for(Lagerposten lp: lagerposten) {
+					if(bp.getArtikelId() == lp.getArtikel().getId() && bp.getAnzahl() <= lp.getLagerbestand()) {
+						gesamtpreis += bp.getAnzahl() * lp.getPreis();
+						lp.setLagerbestand(lp.getLagerbestand() - bp.getAnzahl());
+					}
+					else if(bp.getArtikelId() == lp.getArtikel().getId() && bp.getAnzahl() > lp.getLagerbestand()) {
+						gesamtpreis = 0;
+						bb = new Bestellbestaetigung(false, gesamtpreis);
+						break;
+					}
+				}
+			}
+			bb = new Bestellbestaetigung(true, gesamtpreis);
+			addToLog(mitarbeiter.toString() + " hat eine Bestellung ausgeführt.");
+		}
+		else {
+			addToLog(mitarbeiter.toString() + " hat unberechtigt versucht, eine Bestellung auszuführen.");
+		}
+		return bb;
 	}
 
 	/**
