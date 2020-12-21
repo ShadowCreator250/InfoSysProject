@@ -115,11 +115,11 @@ public class Lagerverwaltung {
 		if(berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
 			for(Bestellposten bp: bestellung) {
 				for(Lagerposten lp: lagerposten) {
-					if(bp.getArtikelId() == lp.getArtikel().getId() && bp.getAnzahl() <= lp.getLagerbestand()) {
+					if(bp.getArtikelId().equals(lp.getArtikel().getId()) && bp.getAnzahl() <= lp.getLagerbestand()) {
 						gesamtpreis += bp.getAnzahl() * lp.getPreis();
 						lp.setLagerbestand(lp.getLagerbestand() - bp.getAnzahl());
 					}
-					else if(bp.getArtikelId() == lp.getArtikel().getId() && bp.getAnzahl() > lp.getLagerbestand()) {
+					else if(bp.getArtikelId().equals(lp.getArtikel().getId()) && bp.getAnzahl() > lp.getLagerbestand()) {
 						gesamtpreis = 0;
 						bb = new Bestellbestaetigung(false, gesamtpreis);
 						break;
