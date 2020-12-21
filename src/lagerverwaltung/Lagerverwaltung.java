@@ -1,5 +1,7 @@
 package lagerverwaltung;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,7 +24,7 @@ public class Lagerverwaltung {
 	/**
 	 * der {@link PrintWriter} f&uuml;r die .log-Datei
 	 */
-	private PrintWriter writer;
+	private PrintWriter writer = null;
 
 	public Lagerverwaltung() {
 		this.berechtigteMitarbeiter = new HashSet<>();
@@ -155,12 +157,18 @@ public class Lagerverwaltung {
 	 * @param message - die Nachricht
 	 */
 	private void addToLog(String message) {
-		// TODO: add FileWriter
 		// source:
 		// https://stackoverflow.com/questions/26717733/print-current-date-in-java
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
-		System.out.println(dateFormat.format(date) + "> " + message);
+		try {
+			writer = new PrintWriter(new FileWriter("lagerverwaltung.log", true), true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		writer.println(dateFormat.format(date) + "> " + message);
+		writer.close();
+		//source: https://javabeginners.de/Dateien_und_Verzeichnisse/In_Textdatei_schreiben.php
 	}
 
 	public Set<String> getBerechtigteMitarbeiter() {
