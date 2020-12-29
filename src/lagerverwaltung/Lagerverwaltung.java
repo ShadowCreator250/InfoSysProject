@@ -118,6 +118,7 @@ public class Lagerverwaltung {
 					if(bp.getArtikelId().equals(lp.getArtikel().getId()) && bp.getAnzahl() <= lp.getLagerbestand()) {
 						gesamtpreis += bp.getAnzahl() * lp.getPreis();
 						lp.setLagerbestand(lp.getLagerbestand() - bp.getAnzahl());
+						bb = new Bestellbestaetigung(true, gesamtpreis);
 					}
 					else if(bp.getArtikelId().equals(lp.getArtikel().getId()) && bp.getAnzahl() > lp.getLagerbestand()) {
 						gesamtpreis = 0;
@@ -125,12 +126,17 @@ public class Lagerverwaltung {
 						break;
 					}
 				}
-			}
-			bb = new Bestellbestaetigung(true, gesamtpreis);
+			}	
+		}
+		else {
+			bb = new Bestellbestaetigung(false, 0);
+			addToLog(mitarbeiter.toString() + " hat unberechtigt versucht, eine Bestellung auszuführen.");
+		}
+		if(bb.isAusgefuehrt()) {
 			addToLog(mitarbeiter.toString() + " hat eine Bestellung ausgeführt.");
 		}
 		else {
-			addToLog(mitarbeiter.toString() + " hat unberechtigt versucht, eine Bestellung auszuführen.");
+			addToLog(mitarbeiter.toString() + " konnte die Bestellung nicht ausführen.");
 		}
 		return bb;
 	}
