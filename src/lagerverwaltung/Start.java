@@ -12,31 +12,42 @@ public class Start {
 		Mitarbeiter anna = new Mitarbeiter("AnR958", "Anne Richter");
 		Mitarbeiter duke = new Mitarbeiter("DuM284", "Duke McCry");
 		Mitarbeiter marie = new Mitarbeiter("MaF439", "Marie Fischer");
-		Artikel schrauben = new Artikel("schrauben-13", "Schrauben", "Schrauben mit Gewindegröße 13");
-		Lagerposten schraubenPosten = new Lagerposten(schrauben, 75, 0.25);
-		
-		Bestellposten schraubenBestellung1 = new Bestellposten("schrauben-13", 50);
-		Bestellposten schraubenBestellung2 = new Bestellposten("schrauben-13", 100);
-		List<Bestellposten> bestellung1 = new ArrayList<>();
-		bestellung1.add(schraubenBestellung1);
-		List<Bestellposten> bestellung2 = new ArrayList<>();
-		bestellung2.add(schraubenBestellung2);
 
+		Artikel schraubenArtikel13 = new Artikel("schraube-13", "13er Sechskantkopfschraube", "Schrauben mit DIN-Schlüsselweite 13");
+		Artikel schraubenArtikel17 = new Artikel("schraube-17", "17er Sechskantkopfschraube", "Schrauben mit DIN-Schlüsselweite 17");
+		Lagerposten schraubenPosten13 = new Lagerposten(schraubenArtikel13, 37, 0.25);
+		Lagerposten schraubenPosten17 = new Lagerposten(schraubenArtikel17, 25, 0.32);
+
+		Bestellposten schraubenBestellPosten1 = new Bestellposten(schraubenArtikel13.getId(), 50);
+		Bestellposten schraubenBestellPosten2 = new Bestellposten(schraubenArtikel13.getId(), 100);
+		Bestellposten schraubenBestellPosten3 = new Bestellposten(schraubenArtikel17.getId(), 50);
+		List<Bestellposten> bestellung1 = new ArrayList<>();
+		bestellung1.add(schraubenBestellPosten1);
+		List<Bestellposten> bestellung2 = new ArrayList<>();
+		bestellung2.add(schraubenBestellPosten2);
+		bestellung2.add(schraubenBestellPosten3);
+
+		// -----
+
+//		verwaltung.berechtigungErteilen(hans);
+//		verwaltung.berechtigungErteilen(anna);
+//		verwaltung.berechtigungErteilen(marie);
 		verwaltung.berechtigungErteilen(bernd);
-		//verwaltung.berechtigungErteilen(hans);
-		//verwaltung.berechtigungErteilen(anna);
 		verwaltung.berechtigungErteilen(duke);
-		//verwaltung.berechtigungErteilen(marie);
 		verwaltung.berechtigungZurueckziehen(duke);
-		
-		verwaltung.addToLagerposten(schraubenPosten);
+
+		verwaltung.addToLagerposten(schraubenPosten13);
+		verwaltung.addToLagerposten(schraubenPosten17);
+		verwaltung.addToLagerposten(schraubenPosten17);
 		verwaltung.lagerbestandAusgeben();
-		//verwaltung.wareneingangBuchen(bernd, schrauben, 50, 0.25);
-		//verwaltung.wareneingangBuchen(duke, schrauben, 50, 0.25);
-		//verwaltung.bestellungAusfuehren(bernd, bestellung1);
-		//verwaltung.bestellungAusfuehren(bernd, bestellung2);
+
+		verwaltung.wareneingangBuchen(bernd, schraubenArtikel13, 50, 0.27);
+		verwaltung.wareneingangBuchen(duke, schraubenArtikel17, 10, 0.30);
+		verwaltung.lagerbestandAusgeben();
+
 		verwaltung.bestellungAusfuehren(duke, bestellung1);
-		
+		verwaltung.bestellungAusfuehren(bernd, bestellung1);
+		verwaltung.bestellungAusfuehren(bernd, bestellung2);
 		verwaltung.lagerbestandAusgeben();
 
 	}

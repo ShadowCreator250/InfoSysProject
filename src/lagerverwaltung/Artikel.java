@@ -24,4 +24,25 @@ public class Artikel {
 	public String toString() {
 		return "Artikel#" + id + "[" + name + " ~ " + beschreibung + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		if(!(obj instanceof Artikel)) {
+			return false;
+		}
+		Artikel artikel = (Artikel) obj;
+		if(!(id.equals(artikel.id))) {
+			return false;
+		}
+//		if(!(name.equals(artikel.name))) {
+//			return false;
+//		}
+//		if(!(name.equals(artikel.name))) {
+//			return false;
+//		}
+		return true;
+	}
 }

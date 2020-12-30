@@ -18,4 +18,9 @@ public class Bestellposten {
 		return anzahl;
 	}
 
+	@Override
+	public String toString() {
+		return "Bestellposten#" + artikelId + " ~ " + anzahl + "x";
+	}
+
 }

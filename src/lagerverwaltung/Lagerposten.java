@@ -34,7 +34,28 @@ public class Lagerposten {
 
 	@Override
 	public String toString() {
-		return "Lagerposten{" + artikel.toString() + " | St&uuml;ck: " + lagerbestand + " | Preis: " + preis + "}";
+		return "Lagerposten{" + artikel.toString() + " | Stück: " + lagerbestand + " | Preis: " + preis + "}";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		if(!(obj instanceof Lagerposten)) {
+			return false;
+		}
+		Lagerposten posten = (Lagerposten) obj;
+		if(lagerbestand != posten.lagerbestand) {
+			return false;
+		}
+		if(preis != posten.preis) {
+			return false;
+		}
+		if(!(artikel.equals(posten.artikel))) {
+			return false;
+		}
+		return true;
 	}
 
 }

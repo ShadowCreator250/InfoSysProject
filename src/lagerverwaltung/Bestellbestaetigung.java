@@ -2,8 +2,8 @@ package lagerverwaltung;
 
 public class Bestellbestaetigung {
 
-	private boolean ausgefuehrt;
-	private double gesamtpreis;
+	private final boolean ausgefuehrt;
+	private final double gesamtpreis;
 
 	public Bestellbestaetigung(boolean ausgefuehrt, double gesamtpreis) {
 		this.ausgefuehrt = ausgefuehrt;
