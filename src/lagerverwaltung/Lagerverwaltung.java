@@ -11,6 +11,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Die Verwaltung des Lagers, die alle wichtigen Aufgaben übernimmt. <br>
+ * <br>
+ * Den {@link Mitarbeiter}n kann die Berechtigung zur Verwaltung erteilt bzw. entzogen werden. <br>
+ * Sie können sowohl Wareneingänge, als auch Bestellungen verbuchen.
+ */
 public class Lagerverwaltung {
 
 	/**
@@ -26,6 +32,9 @@ public class Lagerverwaltung {
 	 */
 	private PrintWriter writer = null;
 
+	/**
+	 * Erstellt ein neues Lager und seine Verwaltung.
+	 */
 	public Lagerverwaltung() {
 		this.berechtigteMitarbeiter = new HashSet<>();
 		this.lagerposten = new ArrayList<>();
