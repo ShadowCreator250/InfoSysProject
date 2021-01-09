@@ -1,7 +1,7 @@
 package lagerverwaltung;
 
 /**
- * Die Angabe über den Erfolg bei der Ausführung einer Bestellung. 
+ * Die Angabe &uuml;ber den Erfolg bei der Ausf&uuml;hrung einer Bestellung.
  */
 public class Bestellbestaetigung {
 
@@ -9,9 +9,9 @@ public class Bestellbestaetigung {
 	private final double gesamtpreis;
 
 	/**
-	 * Erstellt eine Bestätigung, ob eine Bestellung erfolgreich ausgeführt werden konnte.
+	 * Erstellt eine Best&auml;tigung, ob eine Bestellung erfolgreich ausgef&uuml;hrt werden konnte.
 	 * 
-	 * @param ausgefuehrt - Wurde die Bestellung erfolgreich ausgeführt?
+	 * @param ausgefuehrt - Wurde die Bestellung erfolgreich ausgef&uuml;hrt?
 	 * @param gesamtpreis - Der Gesamtpreis der Bestellung.
 	 */
 	public Bestellbestaetigung(boolean ausgefuehrt, double gesamtpreis) {

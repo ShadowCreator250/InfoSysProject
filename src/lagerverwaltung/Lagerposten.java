@@ -2,7 +2,7 @@ package lagerverwaltung;
 
 /**
  * Ein einzelner Posten, der den Bestand des Lagers von einem {@link Artikel} anzeigt. <br>
- * Der Posten muss erst in das Lager hinzugefügt werden.
+ * Der Posten muss erst in das Lager hinzugef&uuml;gt werden.
  */
 public class Lagerposten {
 
@@ -13,9 +13,9 @@ public class Lagerposten {
 	/**
 	 * Erstellt einen Lagerposten, der im Lager gelagert werden soll.
 	 * 
-	 * @param artikel - Der {@link Artikel}, der in das Lager hinzugefügt werden soll.
-	 * @param lagerbestand - Die Stückzahl des {@link Artikel}s.
-	 * @param preis - Der Preis für einen {@link Artikel}.
+	 * @param artikel      - Der {@link Artikel}, der in das Lager hinzugef&uuml;gt werden soll.
+	 * @param lagerbestand - Die St&uuml;ckzahl des {@link Artikel}s.
+	 * @param preis        - Der Preis f&uuml;r einen {@link Artikel}.
 	 */
 	public Lagerposten(Artikel artikel, int lagerbestand, double preis) {
 		this.artikel = artikel;

@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Die Verwaltung des Lagers, die alle wichtigen Aufgaben übernimmt. <br>
+ * Die Verwaltung des Lagers, die alle wichtigen Aufgaben &uuml;bernimmt. <br>
  * <br>
  * Den {@link Mitarbeiter}n kann die Berechtigung zur Verwaltung erteilt bzw. entzogen werden. <br>
- * Sie können sowohl Wareneingänge, als auch Bestellungen verbuchen.
+ * Sie k&ouml;nnen sowohl Wareneing&auml;nge, als auch Bestellungen verbuchen.
  */
 public class Lagerverwaltung {
 
