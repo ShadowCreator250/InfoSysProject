@@ -8,10 +8,7 @@ public class Start {
 	public static void main(String[] args) {
 		Lagerverwaltung verwaltung = new Lagerverwaltung();
 		Mitarbeiter bernd = new Mitarbeiter("BeM202", "Bernd Müller");
-		Mitarbeiter hans = new Mitarbeiter("HaB084", "Hans Bieder");
-		Mitarbeiter anna = new Mitarbeiter("AnR958", "Anne Richter");
 		Mitarbeiter duke = new Mitarbeiter("DuM284", "Duke McCry");
-		Mitarbeiter marie = new Mitarbeiter("MaF439", "Marie Fischer");
 
 		Artikel schraubenArtikel13 = new Artikel("schraube-13", "13er Sechskantkopfschraube", "Schrauben mit DIN-Schlüsselweite 13");
 		Artikel schraubenArtikel17 = new Artikel("schraube-17", "17er Sechskantkopfschraube", "Schrauben mit DIN-Schlüsselweite 17");
@@ -27,11 +24,7 @@ public class Start {
 		bestellung2.add(schraubenBestellPosten2);
 		bestellung2.add(schraubenBestellPosten3);
 
-		// -----
 
-//		verwaltung.berechtigungErteilen(hans);
-//		verwaltung.berechtigungErteilen(anna);
-//		verwaltung.berechtigungErteilen(marie);
 		verwaltung.berechtigungErteilen(bernd);
 		verwaltung.berechtigungErteilen(duke);
 		verwaltung.berechtigungZurueckziehen(duke);
