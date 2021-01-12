@@ -51,7 +51,7 @@ public class Artikel {
 //		if(!(name.equals(artikel.name))) {
 //			return false;
 //		}
-//		if(!(name.equals(artikel.name))) {
+//		if(!(beschreibung.equals(artikel.beschreibung))) {
 //			return false;
 //		}
 		return true;

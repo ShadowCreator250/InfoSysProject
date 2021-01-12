@@ -9,9 +9,9 @@ public class Mitarbeiter {
 	private String name;
 
 	/**
-	 * Fügt einen neuen Mitarbeiter für das Lager hinzu.
+	 * Fügt einen neuen Mitarbeiter f&uuml;r das Lager hinzu.
 	 * 
-	 * @param id - Die ID des neuen Mitarbeiters.
+	 * @param id   - Die ID des neuen Mitarbeiters.
 	 * @param name - Der Name des neuen Mitarbeiters.
 	 */
 	public Mitarbeiter(String id, String name) {
