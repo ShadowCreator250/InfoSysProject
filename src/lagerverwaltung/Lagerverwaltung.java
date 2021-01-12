@@ -46,6 +46,10 @@ public class Lagerverwaltung {
 	 * @param mitarbeiter - Der {@link Mitarbeiter}, der berechtigt werden soll.
 	 */
 	public void berechtigungErteilen(Mitarbeiter mitarbeiter) {
+		if(mitarbeiter == null) {
+			addToLog("Error: Mitarbeiter ist null. Berechtigung kann nicht erteilt werden.");
+			return;
+		}
 		if(!berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
 			berechtigteMitarbeiter.add(mitarbeiter.getId());
 			addToLog(mitarbeiter.toString() + " ist nun berechtigt.");
@@ -60,6 +64,10 @@ public class Lagerverwaltung {
 	 * @param mitarbeiter - Der {@link Mitarbeiter}, der nicht mehr berechtigt sein soll.
 	 */
 	public void berechtigungZurueckziehen(Mitarbeiter mitarbeiter) {
+		if(mitarbeiter == null) {
+			addToLog("Error: Mitarbeiter ist null. Berechtigung kann nicht zurückgezogen werden.");
+			return;
+		}
 		if(berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
 			berechtigteMitarbeiter.remove(mitarbeiter.getId());
 			addToLog(mitarbeiter.toString() + " ist nun nicht mehr berechtigt.");
@@ -74,8 +82,12 @@ public class Lagerverwaltung {
 	 */
 	public void lagerbestandAusgeben() {
 		System.out.println("Der Lagerbestand:");
-		for (Lagerposten posten : lagerposten) {
-			System.out.println("> " + posten.toString());
+		if(lagerposten.size() > 0) {
+			for (Lagerposten posten : lagerposten) {
+				System.out.println("> " + posten.toString());
+			}
+		} else {
+			System.out.println("> ist leer");
 		}
 	}
 
@@ -93,6 +105,14 @@ public class Lagerverwaltung {
 	 * @param preis       - der Preis pro St&uuml;ck
 	 */
 	public void wareneingangBuchen(Mitarbeiter mitarbeiter, Artikel artikel, int anzahl, double preis) {
+		if(mitarbeiter == null) {
+			addToLog("Error: Mitarbeiter ist null. Wareneingang kann nicht gebucht werden.");
+			return;
+		}
+		if(artikel == null) {
+			addToLog("Error: Artikel ist null. Wareneingang kann nicht gebucht werden.");
+			return;
+		}
 		Lagerposten lagerposten = new Lagerposten(artikel, anzahl, preis);
 		if(berechtigteMitarbeiter.contains(mitarbeiter.getId())) {
 			addToLog(mitarbeiter.toString() + " hat einen Lagerposten zum Lager hinzugefügt.");
@@ -116,6 +136,10 @@ public class Lagerverwaltung {
 	 *         Bestellung ausgef&uuml;hrt wurde.
 	 */
 	public Bestellbestaetigung bestellungAusfuehren(Mitarbeiter mitarbeiter, List<Bestellposten> bestellung) {
+		if(mitarbeiter == null) {
+			addToLog("Error: Mitarbeiter ist null. Bestellung kann nicht ausgeführt werden.");
+			return new Bestellbestaetigung(false, 0);
+		}
 		int gesamtpreis = 0;
 		Bestellbestaetigung bb = null;
 		boolean ausfuehrbar = true;
@@ -129,14 +153,17 @@ public class Lagerverwaltung {
 		} else { // bestellung.size() > 0
 			bestellungBeschreibung += bestellung.get(0).toString();
 			if(bestellung.size() > 1) {
-				for (Bestellposten bp : bestellung) {
-					bestellungBeschreibung += ", " + bp.toString();
+				for (int i = 1; i < bestellung.size(); i++) {
+					bestellungBeschreibung += ", " + bestellung.get(i).toString();
 				}
 			}
 			bestellungBeschreibung += "]";
 		}
 
 		for (Bestellposten bp : bestellung) { // prüft, ob Bestellung ausführbar
+			if(bp == null) {
+				continue;
+			}
 			boolean zugehoerigerLagerpostenGefunden = false;
 			for (Lagerposten lp : lagerposten) {
 				if(bp.getArtikelId().equals(lp.getArtikel().getId())) {
@@ -192,6 +219,10 @@ public class Lagerverwaltung {
 	 * @param neuerLagerposten - Der hinzuzuf&uuml;gende {@link Lagerposten}.
 	 */
 	public void addToLagerposten(Lagerposten neuerLagerposten) {
+		if(neuerLagerposten == null) {
+			addToLog("Error: Lagerposten ist null. Er kann dem Lager nicht hinzugefügt werden.");
+			return;
+		}
 		List<Lagerposten> existierendePosten = new ArrayList<>();
 		Lagerposten editierterLagerposten = new Lagerposten(neuerLagerposten.getArtikel(), neuerLagerposten.getLagerbestand(),
 				neuerLagerposten.getPreis());
@@ -221,6 +252,9 @@ public class Lagerverwaltung {
 	 * @param message - die Nachricht
 	 */
 	private void addToLog(String message) {
+		if(message == null) {
+			return;
+		}
 		// sources:
 		// https://stackoverflow.com/questions/26717733/print-current-date-in-java
 		// https://javabeginners.de/Dateien_und_Verzeichnisse/In_Textdatei_schreiben.php

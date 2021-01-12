@@ -24,7 +24,6 @@ public class Start {
 		bestellung2.add(schraubenBestellPosten2);
 		bestellung2.add(schraubenBestellPosten3);
 
-
 		verwaltung.berechtigungErteilen(bernd);
 		verwaltung.berechtigungErteilen(duke);
 		verwaltung.berechtigungZurueckziehen(duke);
